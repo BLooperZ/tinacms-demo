@@ -22,8 +22,8 @@ const GameCreatorPlugin = {
       name: 'frontmatter.image',
       label: 'Image',
       component: 'image',
-      parse: (filename) => `/${filename}`,
-      uploadDir: () => '/public',
+      parse: ({filename}) => `/images/${filename}`,
+      uploadDir: () => '/public/images',
       previewSrc: (src, fieldPath, formValues) => formValues.frontmatter.image
     },
     {
@@ -40,7 +40,7 @@ const GameCreatorPlugin = {
   onSubmit(formValues, cms) {
     const fileRelativePath = `games/${slugify(formValues.frontmatter.title, '_')}.md`
     return cms.api.git.writeToDisk({
-      fileRelativePath: fileRelativePath,
+      fileRelativePath: `data/${fileRelativePath}`,
       content: toMarkdownString(formValues),
     }).then(() => {
       cms.alerts.success('game created! Reload page to see new game')

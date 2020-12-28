@@ -24,7 +24,7 @@ const Game = ({ markdownFile }) => {
       }],
       onSubmit: (formState) => {
         return cms.api.git.writeToDisk({
-          fileRelativePath: markdownFile.fileRelativePath,
+          fileRelativePath: `data/${markdownFile.fileRelativePath}`,
           content: toMarkdownString(formState),
         }).then(() => {
           cms.alerts.success('game saved!')
@@ -45,11 +45,11 @@ const Game = ({ markdownFile }) => {
           </Head>
           <InlineImage
             name="frontmatter.image"
-            parse={(filename) => `/${filename}`}
-            uploadDir={() => '/public'}
-            previewSrc={(src, fieldPath, formValues) => formValues.frontmatter.image}
+            parse={({filename}) => `/images/${filename}`}
+            uploadDir={() => '/public/images'}
+            previewSrc={(src, fieldPath, formValues) => `${formValues.frontmatter.image}`}
           >
-            {({ src }) => <Image src={src} width={320} height={200} />}
+            {({ src }) => <img src={src} width={320} height={200} />}
           </InlineImage>
           <h1><InlineText name="frontmatter.title" /></h1>
           <InlineWysiwyg name="markdownBody" format="markdown">
