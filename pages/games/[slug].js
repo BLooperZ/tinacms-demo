@@ -49,7 +49,7 @@ const Game = ({ markdownFile }) => {
             uploadDir={() => '/public/images'}
             previewSrc={(src, fieldPath, formValues) => `${formValues.frontmatter.image}`}
           >
-            {({ src }) => <img src={src} width={320} height={200} />}
+            {({ src }) => <Image src={src} width={320} height={200} />}
           </InlineImage>
           <h1><InlineText name="frontmatter.title" /></h1>
           <InlineWysiwyg name="markdownBody" format="markdown">
