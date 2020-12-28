@@ -4,7 +4,9 @@ import Link from 'next/link'
 const Nav = () => {
   return (
     <nav>
-      <Link href="/">Home</Link>
+      <ul>
+        <li><Link href="/"><a>Home</a></Link></li>
+      </ul>
     </nav>
   )
 }

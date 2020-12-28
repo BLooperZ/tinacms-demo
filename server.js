@@ -14,7 +14,7 @@ app.prepare().then(() => {
   server.use(cors())
   server.use('/___tina', gitApi.router({
     pathToRepo: process.cwd(),
-    pathToContent: "data",
+    pathToContent: "data"
   }))
 
   server.all('*', (req, res) => {
